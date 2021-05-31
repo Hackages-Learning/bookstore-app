@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.item {
+  margin: 1%;
+  height: 100px;
+  width: 200px;
+  border: 1px solid #0147a7;
+  text-align: center;
+  border-radius: 8px;
+}
+
+a {
+  color: #000;
+  cursor: pointer;
+}
+
+a:hover {
+  background: #0147a7;
+}
+
+hr {
+  border: 1px solid #0147a7;
+  width: 50%;
+  float: left;
+}
+
+input {
+  border: 1px solid #0147a7;
+  border-radius: 2px;
+  width: 410px;
+  height: 25px;
+  margin-bottom: 1em;
+}
+
+button {
+  border: #0147a7 1px solid;
+  border-radius: 2px;
+  margin: 3px;
+  background-color: white;
+}
+
+button:hover,
+button.selected {
+  background-color: #0147a7;
+}
+
+button.reset {
+  background-color: grey;
+}
