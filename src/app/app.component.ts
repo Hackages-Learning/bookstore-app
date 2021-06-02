@@ -1,6 +1,7 @@
 import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { Book } from '../types/book';
 import { books as mockBooks } from '../mocks/books';
+import { CapitalizePipe } from './capitalize.pipe';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,8 @@ import { books as mockBooks } from '../mocks/books';
 })
 export class AppComponent implements AfterViewInit {
   headerTitle = 'Bookstore by Hackages';
+
+  constructor() {}
 
   @ViewChild('whatever')
   searchInput: ElementRef<HTMLInputElement>;
@@ -43,5 +46,6 @@ export class AppComponent implements AfterViewInit {
   reset() {
     // Implement the reset button
     this.searchInput.nativeElement.value = '';
+    this.search();
   }
 }
