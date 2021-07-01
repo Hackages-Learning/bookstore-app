@@ -13,7 +13,7 @@ export class AppComponent implements AfterViewInit {
 
   constructor() {}
 
-  @ViewChild('whatever')
+  @ViewChild('searchInput')
   searchInput: ElementRef<HTMLInputElement>;
 
   ngAfterViewInit() {

@@ -8,7 +8,7 @@
 <!--Search component-->
 <div id="search-component">
   <h4>Search in your library</h4>
-  <input id="search-box" #whatever (input)="search()" />
+  <input id="search-box" #searchInput (input)="search()" />
   <div class="categories" #categoriesDiv>
     <button *ngFor="let category of categories" class="selected">{{ category | capitalize}}</button>
     <button class='reset' (click)="reset()">Reset</button>
