@@ -21,6 +21,7 @@ export class AppComponent implements AfterViewInit {
 
   // Use mock data
   books: Book[] = mockBooks;
+  selected: string;
 
   get categories() {
     // const cats = {};
@@ -31,7 +32,7 @@ export class AppComponent implements AfterViewInit {
     //   }
     // });
     // return Object.keys(cats);
-    return Array.from(new Set(this.books.map((book) => book.category)));
+    return Array.from(new Set(mockBooks.map((book) => book.category)));
   }
 
   search() {
@@ -40,11 +41,21 @@ export class AppComponent implements AfterViewInit {
     this.books = mockBooks.filter((book) =>
       book.title.toLowerCase().includes(term.toLowerCase())
     );
+
+    this.books = this.books.filter(book =>
+      !this.selected || this.selected === book.category
+    )
   }
 
   reset() {
     // Implement the reset button
     this.searchInput.nativeElement.value = '';
+    this.selected = '';
+    this.search();
+  }
+
+  selectCategory(category: string) {
+    this.selected = category;
     this.search();
   }
 }
