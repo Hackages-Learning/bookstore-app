@@ -1,27 +1,74 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {TestBed, async, ComponentFixture} from '@angular/core/testing';
+import {AppComponent} from './app.component';
+import {CapitalizePipe} from "./capitalize.pipe";
+
 describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let app: AppComponent;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
+        CapitalizePipe,
         AppComponent
       ],
     }).compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.debugElement.componentInstance;
   }));
+
   it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-  it(`should have as title 'bookstore'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('bookstore');
-  }));
+
   it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to bookstore!');
+    expect(compiled.querySelector('h1').textContent).toContain('Bookstore by Hackages');
   }));
+
+  it('should display the mockMovies', () => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.item').textContent).toContain('Angular up')
+    expect(compiled.querySelector('.item:last-of-type').textContent).toContain('Functional programming with F#')
+    expect(compiled.querySelector('h3').textContent).toContain('We have 13 book(s) in our library')
+
+  })
+
+  describe('search input', () => {
+    it('should search on the books when input given', () => {
+      fixture.detectChanges();
+      app.searchInput.nativeElement.value = 'Efficient';
+      app.searchInput.nativeElement.dispatchEvent(new Event('input'));
+
+      const compiled = fixture.debugElement.nativeElement;
+
+      fixture.detectChanges();
+
+      expect(compiled.querySelector('.item').textContent).toContain('Efficient JavaScript')
+      expect(compiled.querySelector('h3').textContent).toContain('We have 1 book(s) in our library')
+    })
+
+    it('should reset when clicking on the reset button', () => {
+      fixture.detectChanges();
+      app.searchInput.nativeElement.value = 'Efficient';
+      app.searchInput.nativeElement.dispatchEvent(new Event('input'));
+
+      const compiled = fixture.debugElement.nativeElement;
+
+      fixture.detectChanges();
+
+      compiled.querySelector('.reset').click();
+
+      fixture.detectChanges();
+
+      expect(app.searchInput.nativeElement.value).toEqual('');
+      expect(compiled.querySelector('.item').textContent).toContain('Angular up')
+      expect(compiled.querySelector('.item:last-of-type').textContent).toContain('Functional programming with F#')
+      expect(compiled.querySelector('h3').textContent).toContain('We have 13 book(s) in our library')
+    })
+  })
+
 });

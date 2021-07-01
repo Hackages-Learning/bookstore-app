@@ -1,7 +1,6 @@
 import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { Book } from '../types/book';
 import { books as mockBooks } from '../mocks/books';
-import { CapitalizePipe } from './capitalize.pipe';
 
 @Component({
   selector: 'app-root',
