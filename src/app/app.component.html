@@ -1,34 +1,89 @@
 <!--Header component-->
-<h1>{{headerTitle}}</h1>
+<header>
+  <div class="container">
 
-<hr />
-<br />
+    <a class="logo" href="/">
+      📚 {{headerTitle}}
+    </a>
+
+    <!--Search component-->
+    <div class="search-box">
+      <label htmlFor="search-input" class="search-icon">
+        <img src="../assets/search.svg" alt="" />
+      </label>
+      <input
+        id="search-input" 
+        placeholder="Search for title, author, tags etc"
+        #whatever
+        (input)="search()"
+      />
+
+      <!-- <div class="categories" #categoriesDiv>
+        <button *ngFor="let category of categories" class="selected">{{ category | capitalize}}</button>
+        <button class='reset' (click)="reset()">Reset</button>
+      </div> -->
+
+    </div>
+    <!--End Search component-->
+
+
+  </div>
+</header>
 <!--End Header component-->
 
-<!--Search component-->
-<div id="search-component">
-  <h4>Search in your library</h4>
-  <input id="search-box" #whatever (input)="search()" />
-  <div class="categories" #categoriesDiv>
-    <button *ngFor="let category of categories" class="selected">{{ category | capitalize}}</button>
-    <button class='reset' (click)="reset()">Reset</button>
+<!--Books container-->
+<div class="books-list">
+  <div class="container">
+    <h3>
+      We have <span>{{books.length}} book(s)</span> in our library
+    </h3>
+
+    <div class="books-grid">
+      <a *ngFor="let book of books">
+        <div class="module hero">
+          <div class="item">
+            <img src={{book.image}} alt="" />
+            <h4>{{book.title}}</h4>
+            <p>{{book.author}}</p>
+          </div>
+        </div>
+      </a>
+    </div>
   </div>
 </div>
-
-<hr />
-<br />
-<!--End Search component-->
-
-<!--Books container-->
-<h3>We have {{books.length}} book(s) in our library</h3>
-<hr />
-<br />
-
-<div class="container">
-  <a class="item" *ngFor="let book of books">
-    <div class="module hero">
-      <h4>{{book.title}}</h4>
-    </div>
-  </a>
-</div>
 <!--End Books container-->
+
+<!-- Book details -->
+<section class="book-details-wrapper">
+  <div class="overlay"></div>
+  <div class="bookDetails">
+    <div class="close">
+      <img src="../../assets/close.svg" alt="" />
+    </div>
+    <div class="bookDetailsTop">
+      <h2>Book Details</h2>
+      <img src="../../assets/book01.png" alt="" />
+      <h3>Think and Grow Rich</h3>
+      <p class="author">Napoleon Hill</p>
+      <div class="stars">
+        <img src="../../assets/star-filled.svg" alt="" />
+        <img src="../../assets/star-filled.svg" alt="" />
+        <img src="../../assets/star-filled.svg" alt="" />
+        <img src="../../assets/star-filled.svg" alt="" />
+        <img src="../../assets/star-stroke.svg" alt="" />
+      </div>
+      <p class="desc">
+        In Think and Grow Rich (1937), Napoleon Hill investigates the
+        methods of the 500 most successful people of his time, including the
+        world’s richest men, top politicians, famous inventors, writers and
+        captains of industry. First published amidst the Great Depression,
+        Think and Grow Rich has sold over 100 million copies.
+      </p>
+    </div>
+
+    <div class="bookDetailsBottom">
+      <button>Read the book</button>
+    </div>
+  </div>
+</section>
+<!-- End Book details -->

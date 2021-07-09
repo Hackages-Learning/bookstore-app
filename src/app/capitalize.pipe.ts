@@ -9,6 +9,6 @@ export class CapitalizePipe implements PipeTransform {
     value.split(' ').forEach((el) => {
       result += el.charAt(0).toUpperCase() + el.substr(1) + ' ';
     });
-    return result.trimEnd();
+    return result.trim();
   }
 }
