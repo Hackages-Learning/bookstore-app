@@ -15,13 +15,13 @@ describe('AppComponent', () => {
   }));
   it(`should have as title 'bookstore'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('bookstore');
+    const app = fixture.componentInstance;
+    expect(app.headerTitle).toEqual('Bookstore by Hackages');
   }));
-  it('should render title in a h1 tag', async(() => {
+  it('should render title in an "a" tag', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to bookstore!');
+    expect(compiled.querySelector('a').textContent).toContain('Bookstore by Hackages');
   }));
 });
